@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 class ProductCard extends StatelessWidget {
   final Product product;
   final double radiusFactor;
+  final bool isWishList;
   const ProductCard({
     super.key,
     required this.product,
     this.radiusFactor = 80,
+    this.isWishList = false,
   });
 
   @override
@@ -41,6 +43,9 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Text(
                         product.name,
+                        softWrap: true,
+                        overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                         style: Theme.of(context).textTheme.titleLarge!.copyWith(
                               color: Colors.white70,
                             ),
@@ -59,11 +64,23 @@ class ProductCard extends StatelessWidget {
                   child: IconButton(
                       onPressed: () {},
                       icon: const Icon(
-                        Icons.add_outlined,
+                        Icons.add_circle,
                         color: Colors.white70,
                         size: 24,
                       )),
                 ),
+                !isWishList
+                    ? const SizedBox.shrink()
+                    : Flexible(
+                        flex: 1,
+                        child: IconButton(
+                            onPressed: () {},
+                            icon: const Icon(
+                              Icons.delete,
+                              color: Colors.white70,
+                              size: 24,
+                            )),
+                      ),
               ],
             ),
           )
