@@ -2,12 +2,15 @@ import 'package:e_commerce_app/config/app_router.dart';
 import 'package:e_commerce_app/config/theme.dart';
 import 'package:e_commerce_app/repository/blocs/wishlist/bloc/wishlist_bloc.dart';
 import 'package:e_commerce_app/screen/screens.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'repository/blocs/cart/bloc/cart_bloc.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -27,8 +30,8 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: theme(),
         onGenerateRoute: AppRouter.onGenerateRoute,
-        initialRoute: HomeScreen.routeName,
-        home: const HomeScreen(),
+        initialRoute: SplashScreen.routeName,
+        home: const SplashScreen(),
       ),
     );
   }

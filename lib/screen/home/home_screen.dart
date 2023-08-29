@@ -20,7 +20,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const CustomAppBar(
-        title: 'Zero To Unicorn',
+        title: 'Azamonbucks',
       ),
       bottomNavigationBar: const CustomNavBar(),
       body: SingleChildScrollView(

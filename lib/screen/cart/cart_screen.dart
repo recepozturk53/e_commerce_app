@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/models/models.dart';
 import 'package:e_commerce_app/repository/blocs/cart/bloc/cart_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -69,7 +68,7 @@ class CartScreen extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              const Cart().freeDeliveryString,
+                              state.cart.freeDeliveryString,
                               style: Theme.of(context).textTheme.headlineSmall,
                             ),
                             ElevatedButton(
@@ -100,10 +99,20 @@ class CartScreen extends StatelessWidget {
                           child: ListView.builder(
                             itemBuilder: (BuildContext context, int index) {
                               return CartProductCard(
-                                product: Cart.products[index],
+                                product: state.cart
+                                    .productQuantity(state.cart.products)
+                                    .keys
+                                    .elementAt(index),
+                                quantity: state.cart
+                                    .productQuantity(state.cart.products)
+                                    .values
+                                    .elementAt(index),
                               );
                             },
-                            itemCount: Cart.products.length,
+                            itemCount: state.cart
+                                .productQuantity(state.cart.products)
+                                .keys
+                                .length,
                           ),
                         ),
                       ],
@@ -129,7 +138,7 @@ class CartScreen extends StatelessWidget {
                                         .headlineSmall,
                                   ),
                                   Text(
-                                    '\$${const Cart().subtotalString}',
+                                    '\$${state.cart.subtotalString}',
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineSmall,
@@ -150,7 +159,7 @@ class CartScreen extends StatelessWidget {
                                         .headlineSmall,
                                   ),
                                   Text(
-                                    '\$${const Cart().deliveryFeeString}',
+                                    '\$${state.cart.deliveryFeeString}',
                                     style: Theme.of(context)
                                         .textTheme
                                         .headlineSmall,
@@ -193,7 +202,7 @@ class CartScreen extends StatelessWidget {
                                           ?.copyWith(color: Colors.white),
                                     ),
                                     Text(
-                                      '\$${const Cart().totalString}',
+                                      '\$${state.cart.totalString}',
                                       style: Theme.of(context)
                                           .textTheme
                                           .headlineSmall

@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_app/models/models.dart';
+import 'package:e_commerce_app/repository/blocs/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce_app/repository/blocs/wishlist/bloc/wishlist_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -68,20 +69,30 @@ class ProductScreen extends StatelessWidget {
                   );
                 },
               ),
-              ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-                onPressed: () {},
-                child: Text(
-                  'ADD TO CART',
-                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                        color: Colors.black,
+              BlocBuilder<CartBloc, CartState>(
+                builder: (context, state) {
+                  return ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.white,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-                ),
+                    ),
+                    onPressed: () {
+                      context
+                          .read<CartBloc>()
+                          .add(CartProductAdded(product: product));
+                      Navigator.pushNamed(context, '/cart');
+                    },
+                    child: Text(
+                      'ADD TO CART',
+                      style:
+                          Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                color: Colors.black,
+                              ),
+                    ),
+                  );
+                },
               ),
             ],
           ),
