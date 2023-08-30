@@ -1,7 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce_app/blocs/cart/bloc/cart_bloc.dart';
+import 'package:e_commerce_app/blocs/wishlist/bloc/wishlist_bloc.dart';
 import 'package:e_commerce_app/models/models.dart';
-import 'package:e_commerce_app/repository/blocs/cart/bloc/cart_bloc.dart';
-import 'package:e_commerce_app/repository/blocs/wishlist/bloc/wishlist_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
