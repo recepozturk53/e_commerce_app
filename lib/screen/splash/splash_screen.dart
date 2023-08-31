@@ -1,24 +1,29 @@
 import 'dart:async';
 
-import 'package:e_commerce_app/screen/screens.dart';
+import 'package:e_commerce_app/screen/home/home_screen.dart';
 import 'package:flutter/material.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
   static const String routeName = '/splash';
 
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const SplashScreen(),
-    );
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    Timer(const Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(MaterialPageRoute(
+          builder: (BuildContext context) => const HomeScreen()));
+    });
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    Timer(const Duration(seconds: 2),
-        () => Navigator.pushNamed(context, HomeScreen.routeName));
     return Scaffold(
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,

@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/screen/wishlist/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -28,7 +29,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: [
         IconButton(
             onPressed: () {
-              Navigator.pushNamed(context, '/wishlist');
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => const WishlistScreen()));
             },
             icon: const Icon(Icons.favorite, color: Color(0xFFFF9900)))
       ],

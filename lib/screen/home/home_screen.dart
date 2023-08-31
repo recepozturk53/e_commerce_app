@@ -9,13 +9,6 @@ import '../../widget/widgets.dart';
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/home';
 
-  static Route route() {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => const HomeScreen(),
-    );
-  }
-
   const HomeScreen({super.key});
 
   @override
@@ -24,7 +17,9 @@ class HomeScreen extends StatelessWidget {
       appBar: const CustomAppBar(
         title: 'Azamonbucks',
       ),
-      bottomNavigationBar: const CustomNavBar(),
+      bottomNavigationBar: const CustomNavBar(
+        screen: routeName,
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

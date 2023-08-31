@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/blocs/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce_app/models/models.dart';
+import 'package:e_commerce_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,12 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.pushNamed(context, '/product', arguments: product),
+      onTap: () {
+        Navigator.of(context).push(MaterialPageRoute(
+            builder: (context) => ProductScreen(
+                  product: product,
+                )));
+      },
       child: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [

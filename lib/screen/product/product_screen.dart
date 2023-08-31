@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:e_commerce_app/blocs/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce_app/blocs/wishlist/bloc/wishlist_bloc.dart';
 import 'package:e_commerce_app/models/models.dart';
+import 'package:e_commerce_app/screen/cart/cart_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -10,13 +11,6 @@ import '../../widget/widgets.dart';
 class ProductScreen extends StatelessWidget {
   final Product product;
   static const String routeName = '/product';
-
-  static Route route({required Product product}) {
-    return MaterialPageRoute(
-      settings: const RouteSettings(name: routeName),
-      builder: (_) => ProductScreen(product: product),
-    );
-  }
 
   const ProductScreen({super.key, required this.product});
 
@@ -82,7 +76,9 @@ class ProductScreen extends StatelessWidget {
                       context
                           .read<CartBloc>()
                           .add(CartProductAdded(product: product));
-                      Navigator.pushNamed(context, '/cart');
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (BuildContext context) =>
+                              const CartScreen()));
                     },
                     child: Text(
                       'ADD TO CART',
