@@ -40,7 +40,7 @@ class ProductScreen extends StatelessWidget {
                     onPressed: () {
                       context
                           .read<WishlistBloc>()
-                          .add(AddWishlistProduct(product));
+                          .add(AddProductToWishlist(product));
 
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
@@ -75,7 +75,7 @@ class ProductScreen extends StatelessWidget {
                     onPressed: () {
                       context
                           .read<CartBloc>()
-                          .add(CartProductAdded(product: product));
+                          .add(AddProduct(product: product));
                       Navigator.of(context).push(MaterialPageRoute(
                           builder: (BuildContext context) =>
                               const CartScreen()));

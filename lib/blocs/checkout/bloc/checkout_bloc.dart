@@ -1,6 +1,9 @@
+// ignore_for_file: unused_field
+
 import 'dart:async';
 
 import 'package:e_commerce_app/blocs/cart/bloc/cart_bloc.dart';
+import 'package:e_commerce_app/helpers/navigation_helper.dart';
 import 'package:e_commerce_app/models/models.dart';
 import 'package:e_commerce_app/repositories/checkout/checkout_repo.dart';
 import 'package:equatable/equatable.dart';
@@ -31,6 +34,8 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
                 )
               : CheckoutLoading(),
         ) {
+    on<UpdateCheckout>(_onUpdateCheckout);
+    on<ConfirmCheckout>(_onConfirmCheckout);
     _cartSubscription = cartBloc.stream.listen((state) {
       if (state is CartLoaded) {
         add(
@@ -40,24 +45,11 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
     });
   }
 
-  @override
-  Stream<CheckoutState> mapEventToState(
-    CheckoutEvent event,
-  ) async* {
-    if (event is UpdateCheckout) {
-      yield* _mapUpdateCheckoutToState(event, state);
-    }
-    if (event is ConfirmCheckout) {
-      yield* _mapConfirmCheckoutToState(event, state);
-    }
-  }
-
-  Stream<CheckoutState> _mapUpdateCheckoutToState(
-    UpdateCheckout event,
-    CheckoutState state,
-  ) async* {
+  void _onUpdateCheckout(
+      UpdateCheckout event, Emitter<CheckoutState> emit) async {
+    final state = this.state;
     if (state is CheckoutLoaded) {
-      yield CheckoutLoaded(
+      emit(CheckoutLoaded(
         email: event.email ?? state.email,
         fullName: event.fullName ?? state.fullName,
         products: event.cart?.products ?? state.products,
@@ -68,20 +60,20 @@ class CheckoutBloc extends Bloc<CheckoutEvent, CheckoutState> {
         city: event.city ?? state.city,
         country: event.country ?? state.country,
         zipCode: event.zipCode ?? state.zipCode,
-      );
+      ));
     }
   }
 
-  Stream<CheckoutState> _mapConfirmCheckoutToState(
-    ConfirmCheckout event,
-    CheckoutState state,
-  ) async* {
+  void _onConfirmCheckout(
+      ConfirmCheckout event, Emitter<CheckoutState> emit) async {
     _checkoutSubscription?.cancel();
     if (state is CheckoutLoaded) {
       try {
         await _checkoutRepository.addCheckout(event.checkout);
         print('Done');
-        yield CheckoutLoading();
+        emit(CheckoutLoading());
+
+        NavigationHelper.navigateToHomeScreen();
       } catch (_) {}
     }
   }

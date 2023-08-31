@@ -48,7 +48,7 @@ class CartProductCard extends StatelessWidget {
                     onPressed: () {
                       context
                           .read<CartBloc>()
-                          .add(CartProductRemoved(product: product));
+                          .add(RemoveProduct(product: product));
                     },
                     icon: const Icon(Icons.remove_circle),
                   ),
@@ -60,7 +60,7 @@ class CartProductCard extends StatelessWidget {
                     onPressed: () {
                       context
                           .read<CartBloc>()
-                          .add(CartProductAdded(product: product));
+                          .add(AddProduct(product: product));
                     },
                     icon: const Icon(Icons.add_circle),
                   ),

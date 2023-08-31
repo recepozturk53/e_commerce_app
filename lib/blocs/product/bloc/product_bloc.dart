@@ -11,23 +11,14 @@ part 'product_state.dart';
 class ProductBloc extends Bloc<ProductEvent, ProductState> {
   ProductBloc({required ProductRepo productRepo})
       : _productRepo = productRepo,
-        super(ProductLoading());
+        super(ProductLoading()) {
+    on<LoadProducts>(_onLoadProducts);
+    on<UpdateProducts>(_onUpdateProducts);
+  }
   final ProductRepo _productRepo;
   StreamSubscription? _productSubscription;
 
-  @override
-  Stream<ProductState> mapEventToState(
-    ProductEvent event,
-  ) async* {
-    if (event is LoadProducts) {
-      yield* _mapLoadProductsToState();
-    }
-    if (event is UpdateProducts) {
-      yield* _mapUpdateProductsToState(event);
-    }
-  }
-
-  Stream<ProductState> _mapLoadProductsToState() async* {
+  void _onLoadProducts(LoadProducts event, Emitter<ProductState> emit) async {
     _productSubscription?.cancel();
     _productSubscription = _productRepo.getAllProducts().listen(
           (products) => add(
@@ -36,13 +27,8 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
         );
   }
 
-  Stream<ProductState> _mapUpdateProductsToState(UpdateProducts event) async* {
-    yield ProductLoaded(products: event.products);
+  void _onUpdateProducts(
+      UpdateProducts event, Emitter<ProductState> emit) async {
+    emit(ProductLoaded(products: event.products));
   }
-
-  /* {
-    on<ProductEvent>((event, emit) {
-      // TODO: implement event handler
-    });
-  } */
 }

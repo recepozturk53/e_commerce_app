@@ -53,6 +53,5 @@ class Cart extends Equatable {
   String get freeDeliveryString => freeDelivery(subtotal);
 
   @override
-  // TODO: implement props
   List<Object?> get props => [products];
 }

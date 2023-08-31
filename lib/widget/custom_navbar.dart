@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/blocs/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce_app/blocs/checkout/bloc/checkout_bloc.dart';
 import 'package:e_commerce_app/blocs/wishlist/bloc/wishlist_bloc.dart';
+import 'package:e_commerce_app/helpers/navigation_helper.dart';
 import 'package:e_commerce_app/screen/cart/cart_screen.dart';
 import 'package:e_commerce_app/screen/checkout/checkout_screen.dart';
 import 'package:e_commerce_app/screen/home/home_screen.dart';
@@ -190,6 +191,7 @@ class OrderNowNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    NavigationHelper.initialize(context); // NavigationHelper'ı başlat
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,

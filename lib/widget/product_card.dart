@@ -1,4 +1,4 @@
-import 'package:e_commerce_app/blocs/cart/bloc/cart_bloc.dart';
+import 'package:e_commerce_app/blocs/blocs.dart';
 import 'package:e_commerce_app/models/models.dart';
 import 'package:e_commerce_app/screen/screens.dart';
 import 'package:flutter/material.dart';
@@ -79,9 +79,22 @@ class ProductCard extends StatelessWidget {
                         flex: 1,
                         child: IconButton(
                             onPressed: () {
+                              final snackBar = SnackBar(
+                                content: Text(
+                                  'Product added to cart',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(color: Colors.white),
+                                ),
+                                backgroundColor: const Color(0xFFFF9900),
+                                duration: const Duration(seconds: 1),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
                               context
                                   .read<CartBloc>()
-                                  .add(CartProductAdded(product: product));
+                                  .add(AddProduct(product: product));
                             },
                             icon: const Icon(
                               Icons.add_circle,
@@ -99,7 +112,24 @@ class ProductCard extends StatelessWidget {
                     : Flexible(
                         flex: 1,
                         child: IconButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              final snackBar = SnackBar(
+                                content: Text(
+                                  'Product removed from wishlist',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge!
+                                      .copyWith(color: Colors.white),
+                                ),
+                                backgroundColor: const Color(0xFFFF9900),
+                                duration: const Duration(seconds: 1),
+                              );
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(snackBar);
+                              context.read<WishlistBloc>().add(
+                                    RemoveProductFromWishlist(product),
+                                  );
+                            },
                             icon: const Icon(
                               Icons.delete,
                               color: Colors.white70,
