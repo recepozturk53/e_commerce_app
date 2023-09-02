@@ -1,10 +1,7 @@
 import 'package:e_commerce_app/blocs/cart/bloc/cart_bloc.dart';
 import 'package:e_commerce_app/blocs/checkout/bloc/checkout_bloc.dart';
 import 'package:e_commerce_app/blocs/wishlist/bloc/wishlist_bloc.dart';
-import 'package:e_commerce_app/helpers/navigation_helper.dart';
-import 'package:e_commerce_app/screen/cart/cart_screen.dart';
-import 'package:e_commerce_app/screen/checkout/checkout_screen.dart';
-import 'package:e_commerce_app/screen/home/home_screen.dart';
+import 'package:e_commerce_app/screen/screens.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -191,7 +188,7 @@ class OrderNowNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    NavigationHelper.initialize(context); // NavigationHelper'ı başlat
+    /*  NavigationHelper.initialize(context); */ // NavigationHelper'ı başlat
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -209,6 +206,10 @@ class OrderNowNavBar extends StatelessWidget {
                   context
                       .read<CheckoutBloc>()
                       .add(ConfirmCheckout(checkout: state.checkout));
+
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const OrderConfirmation(),
+                  ));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.white,
