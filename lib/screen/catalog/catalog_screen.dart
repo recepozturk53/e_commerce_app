@@ -28,18 +28,14 @@ class CatalogScreen extends StatelessWidget {
             itemCount: categoryProducts.length,
             itemBuilder: (BuildContext context, int index) {
               return Padding(
-                padding: const EdgeInsets.all(20.0),
+                padding: const EdgeInsets.all(8.0),
                 child: Center(
-                  child: ProductCard(
+                  child: ProductCard.catalog(
                     product: categoryProducts[index],
+                    radiusFactor: 5,
                   ),
                 ),
               );
-            })
-
-        /* ProductCard(
-        product: Product.products[0],
-      ), */
-        );
+            }));
   }
 }

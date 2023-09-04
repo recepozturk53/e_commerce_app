@@ -30,9 +30,9 @@ class OrderConfirmation extends StatelessWidget {
                   top: 125,
                   child: SvgPicture.asset(
                     'assets/svgs/garlands.svg',
+                    color: const Color(0xFFFF9900),
                     height: 100,
                     width: 100,
-                    color: const Color(0xFFFF9900),
                   ),
                 ),
                 Positioned(
@@ -61,7 +61,7 @@ class OrderConfirmation extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   Text(
-                    'Thank you for purchasing on AzamonBucks',
+                    'Thank you for purchasing on AzamonBucks.',
                     style: Theme.of(context).textTheme.titleLarge,
                   ),
                   const SizedBox(height: 20),
@@ -82,13 +82,13 @@ class OrderConfirmation extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      OrderSummaryProductCard(
+                      ProductCard.summary(
                         product: Product.products[0],
                         quantity: 2,
                       ),
-                      OrderSummaryProductCard(
-                        product: Product.products[1],
-                        quantity: 3,
+                      ProductCard.summary(
+                        product: Product.products[0],
+                        quantity: 2,
                       ),
                     ],
                   ),

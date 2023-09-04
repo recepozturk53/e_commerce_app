@@ -99,7 +99,7 @@ class CartScreen extends StatelessWidget {
                           height: 330,
                           child: ListView.builder(
                             itemBuilder: (BuildContext context, int index) {
-                              return CartProductCard(
+                              return ProductCard.cart(
                                 product: state.cart
                                     .productQuantity(state.cart.products)
                                     .keys

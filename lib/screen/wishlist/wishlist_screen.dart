@@ -35,9 +35,8 @@ class WishlistScreen extends StatelessWidget {
                   return Padding(
                     padding: const EdgeInsets.all(20.0),
                     child: Center(
-                      child: ProductCard(
+                      child: ProductCard.wishlist(
                         product: state.wishList.products[index],
-                        isWishList: true,
                       ),
                     ),
                   );
