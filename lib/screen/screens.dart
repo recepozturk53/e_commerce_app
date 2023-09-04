@@ -1,3 +1,5 @@
+export 'auth/login/login_screen.dart';
+export 'auth/signup/signup_screen.dart';
 export 'cart/cart_screen.dart';
 export 'catalog/catalog_screen.dart';
 export 'checkout/checkout_screen.dart';
