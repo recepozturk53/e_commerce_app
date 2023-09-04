@@ -1,12 +1,13 @@
-import 'dart:async';
-
 import 'package:e_commerce_app/blocs/blocs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashScreen extends StatefulWidget {
-  final Widget widget;
-  const SplashScreen({super.key, required this.widget});
+  /* final Widget widget; */
+  const SplashScreen({
+    super.key,
+    /* required this.widget */
+  });
 
   static const String routeName = '/splash';
 
@@ -15,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  @override
+  /*  @override
   void initState() {
     Timer(const Duration(seconds: 2), () {
       Navigator.of(context).pushReplacement(
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
     });
     super.initState();
   }
-
+ */
   /* void goRoute(BuildContext context, AppStatus state) {
     switch (state) {
       case AppStatus.authenticated:

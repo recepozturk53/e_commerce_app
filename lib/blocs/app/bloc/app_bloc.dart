@@ -15,12 +15,16 @@ class AppBloc extends Bloc<AppEvent, AppState> {
       : _authRepository = authRepository,
         super(authRepository.currentUser.isNotEmpty
             ? AppState.authenticated(authRepository.currentUser)
-            : const AppState.unauthenticated()) {
+            : const AppState.unknown()) {
     on<AppUserChanged>(_onUserChanged);
     on<AppLogoutRequested>(_onLogoutRequested);
 
     _userSubscription = _authRepository.user!.listen(
-      (user) => add(AppUserChanged(userModel: user)),
+      (user) {
+        Future.delayed(const Duration(milliseconds: 800), () {
+          add(AppUserChanged(userModel: user));
+        });
+      },
     );
   }
 

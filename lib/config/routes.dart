@@ -23,5 +23,13 @@ List<Page<dynamic>> onGenerateAppViewPages(
           widget: LoginScreen(),
         )), */
       ];
+    case AppStatus.unknown:
+    default:
+      return [
+        const MaterialPage<void>(
+            child: SplashScreen(
+                /*  widget: LoginScreen(), */
+                )),
+      ];
   }
 }
