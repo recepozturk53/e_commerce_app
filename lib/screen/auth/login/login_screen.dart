@@ -23,7 +23,7 @@ class LoginScreen extends StatelessWidget {
             create: (_) => LoginCubit(
               context.read<AuthRepository>(),
             ),
-            child: const LoginForm(),
+            child: const SingleChildScrollView(child: LoginForm()),
           ),
         ),
       ),

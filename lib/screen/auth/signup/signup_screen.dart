@@ -18,7 +18,7 @@ class SignUpScreen extends StatelessWidget {
           create: (_) => SignupCubit(
             context.read<AuthRepository>(),
           ),
-          child: const SignupForm(),
+          child: const SingleChildScrollView(child: SignupForm()),
         ),
       ),
     );
